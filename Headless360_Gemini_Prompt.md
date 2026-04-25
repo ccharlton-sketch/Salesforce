@@ -1,206 +1,63 @@
-# Headless 360 Slide Deck — Gemini Rebuild Prompt
+# Headless 360 Sales Deck — Gemini Prompt
 
-Use the steps below to recreate the Salesforce Headless 360 sales deck in Gemini. Each section gives you the slide title, layout direction, content, and design notes.
+Please create a 6-slide sales presentation for Salesforce sales reps to use with customers. The topic is **Salesforce Headless 360**. The goal is to calm customer fears about what this means, explain the value clearly, and get them excited about the future.
 
----
-
-## Design Language
-
-Apply the following branding across all slides:
-
-- **Hero slides (1 & 6):** Full-bleed deep royal blue background (`#0047D1`), white and light blue text, minimal content, large bold typography
-- **Content slides (2–5):** Light sky blue background (`#D6EEFF`), white rounded cards, dark navy (`#032D60`) headline text, bright blue (`#0176D3`) accents
-- **Font:** Bold, heavy weight for headlines. Clean sans-serif throughout.
-- **Logo:** Small Salesforce cloud badge top-right on every content slide
-- **Bottom of every slide:** A one-sentence italic "Bottom line" summary
+Use the brand colors and styling guide at the bottom of this document, but otherwise make your own creative decisions on layout, visuals, and how to best present the information.
 
 ---
 
-## Slide 1 — Hero
+## Slide 1 — What is Headless 360 and why it matters
 
-**Layout:** Full-bleed royal blue. Large headline left. Decorative ring graphic right.
+The opening slide should set the stage. Headless 360 is Salesforce opening up its MCP Server and exposing the full power of the platform via open API. The key message is that everything that makes Salesforce great — its world-class backend, open API platform, Agentic Layer, and security model — is still fully intact. User permissions and profiles are respected natively across every surface, which has historically been really hard to enforce outside the Salesforce UI. This isn't a brand new idea either — Salesforce has been moving in this direction for years. Headless 360 is the moment it becomes a real product.
 
-**Content:**
-- Eyebrow text (small caps): `Introducing`
-- Headline line 1 (white): `Salesforce`
-- Headline line 2 (light blue): `Headless 360`
-- Subheadline: `The platform you trust — now accessible everywhere.`
-- Four small circles along the bottom, each labeled: `Backend System` / `Open API` / `Agentic Layer` / `Security & Profiles`
-- Caption beneath circles: `All preserved. All enforced. All yours.`
-- Right side: Large decorative circle/ring with `360` in the center and `HEADLESS` above it
+The foundation doesn't change. The front door does.
 
 ---
 
-## Slide 2 — What is Headless 360?
+## Slide 2 — We're not killing the UI
 
-**Layout:** Light sky blue background. Four numbered white cards side by side.
-
-**Content:**
-- Eyebrow: `What is Headless 360?`
-- Headline: `Salesforce opening the platform. Everything you love — everywhere you work.`
-- Footer caption: `This isn't new — we've been building toward this for years.`
-
-**Card 1 — 01 Backend System** *(blue accent)*
-- World-class CRM infrastructure
-- Decades of enterprise reliability
-- Your data, always your data
-
-**Card 2 — 02 Open API Platform** *(mid blue accent)*
-- MCP Server exposed for the first time
-- Connect any tool, any interface
-- Standards-based, developer-first
-
-**Card 3 — 03 Agentic Layer** *(teal accent)*
-- Agentforce remains fully central
-- Build once, deploy anywhere
-- Deterministic actions via scripts
-
-**Card 4 — 04 Security & Profiles** *(purple accent)*
-- User permissions enforced natively
-- Profiles respected across all surfaces
-- Audit trails on every action
-
-> **Card style:** White rounded rectangle, colored left accent bar, large number top-left (01/02/03/04), bold title, horizontal rule, arrow-style bullets below
+This slide needs to address the fear head on. Parker Harris said "You may not even log into Salesforce anymore" — and that quote has made people nervous. There's some truth to it: some users may genuinely prefer a conversational AI interface over clicking through screens, and we now support that. But that is not the same as forcing anyone's hand. Salesforce has an active, growing UI roadmap. Screen flows, record updates, Lightning improvements — all of it continues. Some customers want a ChatGPT-style experience for Salesforce. Some want traditional UI. We are building both. Headless 360 is a new door, it doesn't close the old one.
 
 ---
 
-## Slide 3 — Addressing the Fear
+## Slide 3 — Slack as the Ultimate Agent Orchestrator
 
-**Layout:** Light sky blue background. Quote callout box. Two-column Fear vs Reality grid.
-
-**Content:**
-- Eyebrow: `Addressing the Fear`
-- Headline: `We're not killing the UI.` + (blue) `We're expanding it.`
-- Quote box (white card with blue left border):
-  > *"You may not even log into Salesforce anymore."* — Parker Harris
-  >
-  > *There is truth here — and important context.*
-
-**Left column header (red tint):** ❌ What people fear
-**Right column header (green tint):** ✅ The reality
-
-| Fear | Reality |
-|------|---------|
-| Salesforce is forcing everyone off the UI | Headless 360 is an option, not a mandate |
-| The classic Lightning experience is being deprecated | Active roadmap: flows, records, dashboards all continue |
-| Teams will lose familiar workflows and productivity | Both UI and AI interfaces are built and fully supported |
-
-- Center badge between columns: `BOTH` (blue circle)
-- Footer: `Headless 360 is a new door — it doesn't close the old one.`
+For customers who use Slack, this is the big exciting story. We are positioning Slackbot as the central AI command center for the entire organization. From Slack, users can call Salesforce Headless 360, Agentforce Agents, Jira, Confluence, and any other MCP-connected app — all seamlessly, all in natural language. Imagine typing into Slack "pull me a summary of all at-risk deals this quarter and create follow-up tasks" and having it just work, with real data, real permissions, and a full audit trail. This is the ChatGPT for your org that customers have been asking for, except it's grounded in their data and governed by their rules.
 
 ---
 
-## Slide 4 — Slack: The Ultimate Agent Orchestrator
+## Slide 4 — What if you don't have Slack?
 
-**Layout:** Light sky blue background. Four horizontal stacked layer rows (architecture diagram style).
-
-**Content:**
-- Eyebrow: `If You Have Slack`
-- Headline: `Slackbot:` + (blue) `The Ultimate Agent Orchestrator.`
-
-**Layer 1 — System of engagement** (blue border)
-`💬 Slackbot` — Orchestrator | Canvas | Enterprise Search | Messaging
-*Right label:* Any workspace — Teams | Web | Mobile
-
-**Layer 2 — System of agency** (teal border)
-`🤖 Agentforce Agents` — Agentforce Actions | MCP Server | A2A Orchestration | Observability
-*Right label:* Any agent — Jira | Confluence | MCP Apps
-
-**Layer 3 — System of work** (mid blue border)
-`☁️ Salesforce Headless 360` — Sales | Service | Marketing | Commerce | Platform | All Clouds
-*Right label:* Any interface — UI | API | Voice | Chat
-
-**Layer 4 — System of context** (dark navy fill)
-`🗄 Data 360` — CDP | MuleSoft | Tableau | Real-time | Zero copy | Governed
-
-**Four proof pills at bottom:**
-- ✓ Real permissions enforced
-- ✓ Full audit trail
-- ✓ Works in existing tools
-- ✓ MCP-native
+We are not leaving anyone behind. With our pro code tools, Salesforce now supports building React apps inside Agentforce Vibes. You can also build an app directly into Microsoft Teams that connects to Headless 360. The interface is flexible — the underlying data and structure is what matters, and that stays consistent regardless of how users choose to access it. The channel is your choice. The power underneath is the same.
 
 ---
 
 ## Slide 5 — The Developer Story
 
-**Layout:** Light sky blue background. Five-step horizontal numbered pipeline. Three key message cards below.
-
-**Content:**
-- Eyebrow: `For Developers`
-- Headline: `Build with AI. Deploy to the platform.` + (blue) `Expose to users naturally.`
-
-**5-step pipeline (left to right, numbered circles above each card):**
-
-| Step | Title | Description |
-|------|-------|-------------|
-| 01 | Claude + Cursor | AI-assisted build: Apex, Flows, metadata |
-| 02 | Agentforce Actions | Deterministic actions scripted & tested |
-| 03 | MCP Server | Exposed via open API |
-| 04 | Slackbot / Any Interface | Called in natural language |
-| 05 | End User | No training needed. Just ask. |
-
-Arrow `→` between each step.
-
-**Three key message cards below the pipeline:**
-
-**Card 1 — Pro-developer first**
-Salesforce has always championed developers — this is that at full scale.
-
-**Card 2 — Agentforce still central**
-We're giving developers superpowers to build on top of Agentforce, not replace it.
-
-**Card 3 — Claude / Cursor integrated**
-Direct Salesforce connection — understand metadata, write Apex, build flows with AI.
+This slide is for technical audiences and developer champions. Salesforce has always been pro-developer, and Headless 360 is proof of that. Claude and Cursor now connect directly into Salesforce, helping developers build Apex classes, create Flows, and understand metadata faster than ever. Developers can build deterministic Agentforce Actions with AI assistance, and those actions get exposed through the MCP Server so end users can call them in plain natural language. We are not replacing Agentforce — we are giving developers superpowers to build on top of it. Build with AI. Deploy to the platform. Expose to users naturally.
 
 ---
 
-## Slide 6 — Closing
+## Slide 6 — Closing: Both sides of the coin
 
-**Layout:** Full-bleed royal blue (same as Slide 1). Two large option panels side by side.
-
-**Content:**
-- Eyebrow: `THE BIG PICTURE`
-- Headline (white): `Salesforce plays both sides of the coin.`
-- Subheadline (italic, light blue): `We meet every customer exactly where they are.`
-
-**Left panel (blue with light blue border):**
-**Headless 360**
-AI-native • Conversational
-Cross-platform • MCP-open
-
-ChatGPT for your org —
-with Salesforce data, governance & trust.
-
-**Center:** `OR` (light blue text)
-
-**Right panel (blue with light blue border):**
-**Classic Salesforce UI**
-Lightning • Screen Flows
-Record Updates • Dashboards
-
-The experience your team
-already knows and loves.
-
-**Four trust pills along the bottom:**
-- ✔ User License Required
-- ✔ Audit Trails Preserved
-- ✔ Activity History Per User
-- ✔ Permissions Respected
-
-**Footer:** `Embrace AI. Keep your data. Meet every customer where they are.`
+The closing slide should leave customers feeling confident and excited. Salesforce is the only platform that can credibly play both sides — AI-native and traditional UI — without forcing a choice. This is Salesforce embracing the future while protecting what customers already love. User licenses still matter. Audit trails are preserved. Activity history is tied to individual users. The trust layer that makes Salesforce the enterprise standard does not go away just because the interface changes. Customers get more options, not fewer. They can move toward AI at their own pace, on their own terms, without leaving behind what already works.
 
 ---
 
-## Quick Reference — Colors
+## Brand Styling Guide
 
-| Name | Hex | Used for |
-|------|-----|----------|
-| Royal Blue | `#0047D1` | Hero slide backgrounds |
-| Deep Blue | `#0030A0` | Gradient/shadow on hero slides |
+Please use these colors to match official Salesforce branding:
+
+| Name | Hex | Suggested use |
+|------|-----|---------------|
+| Royal Blue | `#0047D1` | Hero/statement slide backgrounds |
+| Deep Blue | `#0030A0` | Gradient accents on dark slides |
 | Sky Blue | `#D6EEFF` | Content slide backgrounds |
-| Navy | `#032D60` | Headline text |
-| Bright Blue | `#0176D3` | Accents, borders, emphasis |
+| Navy | `#032D60` | Headline and body text |
+| Bright Blue | `#0176D3` | Accents, borders, highlights |
 | Mid Blue | `#1B96FF` | Secondary accents |
-| Teal | `#06A59A` | Card 3 accent |
-| Purple | `#742EB8` | Card 4 accent |
+| Teal | `#06A59A` | Supporting accent color |
+| Purple | `#742EB8` | Supporting accent color |
 | White | `#FFFFFF` | Cards, text on dark backgrounds |
+
+General feel: clean, modern, enterprise. Bold heavy headlines. Lots of breathing room. The reference deck this is inspired by alternates between full-bleed deep blue slides for big statements and light sky blue slides for detailed content.

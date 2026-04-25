@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salesforce Headless 360 — Sales Deck</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sf-blue: #0176D3;
+      --sf-dark: #032D60;
+      --sf-cloud: #1B96FF;
+      --sf-light: #E8F4FD;
+      --sf-teal: #06A59A;
+      --sf-purple: #9050E9;
+      --sf-orange: #FE9339;
+      --white: #FFFFFF;
+      --gray: #F3F3F3;
+      --text: #181818;
+      --muted: #444;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ── Deck container ── */
+    .deck { width: 100%; max-width: 960px; }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      color: #aaa;
+      font-size: 13px;
+      user-select: none;
+    }
+    .nav button {
+      background: var(--sf-blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .nav button:hover { background: var(--sf-cloud); }
+    .nav button:disabled { background: #333; color: #666; cursor: default; }
+    .slide-counter { font-size: 13px; color: #888; }
+
+    /* ── Slide ── */
+    .slide {
+      display: none;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.7);
+      position: relative;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+
+    /* ── Slide layouts ── */
+    .slide-inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 48px 56px 36px;
+    }
+
+    /* ── Typography ── */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .75;
+      margin-bottom: 10px;
+    }
+    .headline {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .headline span { display: block; }
+    .subhead {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      opacity: .85;
+    }
+
+    /* ── Bullet list ── */
+    ul.bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    ul.bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+    ul.bullets li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-top: 5px;
+    }
+
+    /* ── Bottom-line bar ── */
+    .bottom-line {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      font-size: .82rem;
+      font-style: italic;
+      opacity: .8;
+    }
+    .bottom-line strong { font-style: normal; font-weight: 700; }
+
+    /* ── Two-column layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      flex: 1;
+    }
+    .col-card {
+      background: rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: 22px;
+    }
+    .col-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* ── Icon chips ── */
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .chip {
+      background: rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 1 — Intro / Hero
+    ───────────────────────────────────────────── */
+    #s1 {
+      background: linear-gradient(135deg, var(--sf-dark) 0%, #053f80 55%, #0a5faa 100%);
+      color: white;
+    }
+    #s1 .eyebrow { color: #7ec8ff; }
+    #s1 .headline { font-size: 2.5rem; }
+    #s1 ul.bullets li::before { background: #7ec8ff; }
+    #s1 .logo-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    #s1 .logo-row .sf-logo {
+      width: 38px; height: 38px;
+      background: white;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px; color: var(--sf-blue);
+    }
+    #s1 .logo-row span { font-size: 13px; font-weight: 600; color: #acd4f5; letter-spacing: .04em; }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 2 — Fear Dispel
+    ───────────────────────────────────────────── */
+    #s2 {
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: white;
+    }
+    #s2 .eyebrow { color: #e97bff; }
+    #s2 ul.bullets li::before { background: #e97bff; }
+    #s2 .quote-box {
+      background: rgba(233,123,255,.12);
+      border-left: 4px solid #e97bff;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      font-size: .88rem;
+      font-style: italic;
+      color: #dcc8f0;
+    }
+    #s2 .quote-box cite { display: block; margin-top: 6px; font-style: normal; font-size: .75rem; opacity: .7; }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 3 — Slack
+    ───────────────────────────────────────────── */
+    #s3 {
+      background: linear-gradient(135deg, #3b1f6b 0%, #4a0060 50%, #3d0b85 100%);
+      color: white;
+    }
+    #s3 .eyebrow { color: #c4a0ff; }
+    #s3 ul.bullets li::before { background: #c4a0ff; }
+    #s3 .orbit {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    #s3 .orbit-center {
+      background: #4a1fa8;
+      border: 3px solid #c4a0ff;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    #s3 .orbit-item {
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    #s3 .arrow { font-size: 1.2rem; opacity: .5; }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 4 — No Slack
+    ───────────────────────────────────────────── */
+    #s4 {
+      background: linear-gradient(135deg, #003d2e 0%, #005a3c 55%, #007a50 100%);
+      color: white;
+    }
+    #s4 .eyebrow { color: #5dffc4; }
+    #s4 ul.bullets li::before { background: #5dffc4; }
+    #s4 .col-card { background: rgba(255,255,255,.07); border: 1px solid rgba(93,255,196,.2); }
+    #s4 .col-card h3 { color: #5dffc4; }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 5 — Developer Story
+    ───────────────────────────────────────────── */
+    #s5 {
+      background: linear-gradient(135deg, #1a1200 0%, #2e2000 55%, #403000 100%);
+      color: white;
+    }
+    #s5 .eyebrow { color: var(--sf-orange); }
+    #s5 ul.bullets li::before { background: var(--sf-orange); }
+    #s5 .code-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(254,147,57,.12);
+      border: 1px solid rgba(254,147,57,.3);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: .75rem;
+      font-family: 'Cascadia Code', 'Fira Mono', monospace;
+      color: #ffbe7a;
+      margin: 3px;
+    }
+    #s5 .badge-row { margin-top: 14px; }
+
+    /* ─────────────────────────────────────────────
+       SLIDE 6 — Closing
+    ───────────────────────────────────────────── */
+    #s6 {
+      background: linear-gradient(145deg, var(--sf-dark) 0%, #032D60 40%, #01498c 100%);
+      color: white;
+    }
+    #s6 .eyebrow { color: #7ec8ff; }
+    #s6 .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 4px;
+      flex: 1;
+    }
+    #s6 .choice-card {
+      background: rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #s6 .choice-card h3 { font-size: 1rem; font-weight: 800; color: #7ec8ff; }
+    #s6 .choice-card p { font-size: .82rem; line-height: 1.5; opacity: .85; }
+    #s6 .vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.2);
+      align-self: center;
+    }
+    #s6 .trust-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    #s6 .trust-pill {
+      background: rgba(1,118,211,.3);
+      border: 1px solid rgba(1,118,211,.5);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    /* ── Progress dots ── */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 0 4px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #333;
+      transition: background .25s, transform .25s;
+      cursor: pointer;
+    }
+    .dot.active { background: var(--sf-cloud); transform: scale(1.35); }
+
+    /* ── Keyboard hint ── */
+    .keyboard-hint {
+      text-align: center;
+      font-size: 11px;
+      color: #444;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck">
+  <!-- Nav -->
+  <div class="nav">
+    <button id="prev" disabled>← Prev</button>
+    <span class="slide-counter" id="counter">1 / 6</span>
+    <button id="next">Next →</button>
+  </div>
+
+  <!-- ─────────── SLIDE 1 ─────────── -->
+  <div class="slide active" id="s1">
+    <div class="slide-inner">
+      <div class="logo-row">
+        <div class="sf-logo">SF</div>
+        <span>Salesforce Platform</span>
+      </div>
+      <div class="eyebrow">Introducing</div>
+      <div class="headline">
+        <span>Salesforce</span>
+        <span style="color:#7ec8ff">Headless 360</span>
+      </div>
+      <div class="subhead">The platform you trust, now accessible everywhere</div>
+      <ul class="bullets">
+        <li><span>Salesforce is opening its MCP Server — exposing the full platform via open API</span></li>
+        <li><span>Everything that makes Salesforce great stays intact: backend, APIs, Agentic Layer, permissions, profiles</span></li>
+        <li><span>User-level security and permissions enforced natively — no workarounds needed</span></li>
+        <li><span>This isn't new — we've been building toward this for years</span></li>
+      </ul>
+      <div class="bottom-line">
+        <strong>Bottom line:</strong> The foundation doesn't change. The front door does.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── SLIDE 2 ─────────── -->
+  <div class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="eyebrow">Addressing the Fear</div>
+      <div class="headline" style="font-size:1.9rem">We're Not Killing the UI</div>
+      <div class="quote-box">
+        "You may not even log into Salesforce anymore."
+        <cite>— Parker Harris</cite>
+      </div>
+      <ul class="bullets">
+        <li><span>Some users <em>may</em> prefer conversational interfaces over screens — that's a valid choice we now support</span></li>
+        <li><span>We are <strong>not</strong> forcing anyone's hand</span></li>
+        <li><span>Active, growing UI roadmap — screen flows, record updates, Lightning improvements continue</span></li>
+        <li><span>Some customers want <strong>ChatGPT for Salesforce</strong>. Some want traditional UI. <strong>We're building both.</strong></span></li>
+        <li><span>Headless 360 is an option, not a mandate</span></li>
+      </ul>
+      <div class="bottom-line">
+        <strong>Bottom line:</strong> Headless 360 is a new door — it doesn't close the old one.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── SLIDE 3 ─────────── -->
+  <div class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="eyebrow">If You Have Slack</div>
+      <div class="headline">Slack: The Ultimate<br>Agent Orchestrator</div>
+      <ul class="bullets">
+        <li><span>Slackbot becomes your central hub for AI-driven work</span></li>
+        <li><span>Call Salesforce Headless 360, Agentforce Agents, Jira, Confluence and more — all from one interface</span></li>
+        <li><span>Natural language in → intelligent cross-platform action out</span></li>
+        <li><span>Real data, real permissions, real audit trail</span></li>
+      </ul>
+      <div class="orbit">
+        <div class="orbit-item">Agentforce<br>Agents</div>
+        <div class="arrow">→</div>
+        <div class="orbit-center">Slackbot<br>Orchestrator</div>
+        <div class="arrow">←</div>
+        <div class="orbit-item">Jira /<br>Confluence</div>
+        <div style="width:100%;display:flex;justify-content:center;margin-top:4px;">
+          <div class="orbit-item" style="margin-top:0">Salesforce<br>Headless 360</div>
+        </div>
+      </div>
+      <div class="bottom-line" style="margin-top:12px">
+        <strong>Bottom line:</strong> Slack ties it all together — without changing how people already work.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── SLIDE 4 ─────────── -->
+  <div class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="eyebrow">No Slack? No Problem.</div>
+      <div class="headline">Multiple Paths<br>to Headless 360</div>
+      <div class="two-col">
+        <div class="col-card">
+          <h3>Agentforce Vibes</h3>
+          <ul class="bullets">
+            <li><span>Pro code tools now support building React apps inside Agentforce Vibes</span></li>
+            <li><span>Full Headless 360 access from a custom-built interface</span></li>
+            <li><span>Build exactly what your users need</span></li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h3>Microsoft Teams</h3>
+          <ul class="bullets">
+            <li><span>Build an app into Teams — full Headless 360 access from where your team already lives</span></li>
+            <li><span>Meet users in their existing workflow</span></li>
+            <li><span>No new tools required</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <strong>Bottom line:</strong> The channel is your choice. The power underneath is consistent.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── SLIDE 5 ─────────── -->
+  <div class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="eyebrow">For Developers</div>
+      <div class="headline">Cursor + Claude +<br>Salesforce = Your New Stack</div>
+      <ul class="bullets">
+        <li><span>Claude and Cursor connect directly into Salesforce — build Apex, create Flows, understand metadata with AI assistance</span></li>
+        <li><span>Build deterministic Agentforce actions with scripting help from Cursor/Claude</span></li>
+        <li><span>Those actions and agents are then exposed through the MCP Server — callable by end users in plain language</span></li>
+        <li><span>We're not replacing Agentforce — we're giving developers superpowers to build on top of it</span></li>
+      </ul>
+      <div class="badge-row">
+        <span class="code-badge">🤖 Claude</span>
+        <span class="code-badge">⌨️ Cursor</span>
+        <span class="code-badge">⚡ Apex Classes</span>
+        <span class="code-badge">🔀 Flows</span>
+        <span class="code-badge">📦 Agentforce Vibes</span>
+        <span class="code-badge">🌐 MCP Server</span>
+      </div>
+      <div class="bottom-line">
+        <strong>Bottom line:</strong> Build with AI. Deploy to the platform. Expose to users naturally.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── SLIDE 6 ─────────── -->
+  <div class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="eyebrow">The Big Picture</div>
+      <div class="headline">Salesforce Is Playing<br><span style="color:#7ec8ff">Both Sides of the Coin</span></div>
+      <div class="choice-grid">
+        <div class="choice-card">
+          <h3>Headless 360</h3>
+          <p>AI-native, conversational, cross-platform. ChatGPT for your org — with Salesforce data, governance, and trust.</p>
+        </div>
+        <div class="choice-card">
+          <h3>Classic Salesforce UI</h3>
+          <p>The Lightning experience you know. Screen flows, record updates, dashboards. Still actively built and improving.</p>
+        </div>
+      </div>
+      <div class="trust-row">
+        <span class="trust-pill">✔ User Licenses Still Required</span>
+        <span class="trust-pill">✔ Audit Trails Preserved</span>
+        <span class="trust-pill">✔ Activity History Per User</span>
+        <span class="trust-pill">✔ Permissions Respected</span>
+      </div>
+      <div class="bottom-line" style="margin-top:16px">
+        <strong>Bottom line:</strong> Embrace AI. Keep your data. Meet every customer where they are.
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots + keyboard hint -->
+  <div class="dots" id="dots"></div>
+  <div class="keyboard-hint">Use ← → arrow keys or buttons to navigate</div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const counter = document.getElementById('counter');
+  const dotsEl = document.getElementById('dots');
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    prev.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+  }
+
+  prev.addEventListener('click', () => current > 0 && goTo(current - 1));
+  next.addEventListener('click', () => current < slides.length - 1 && goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(Math.min(current + 1, slides.length - 1));
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(Math.max(current - 1, 0));
+  });
+</script>
+</body>
+</html>

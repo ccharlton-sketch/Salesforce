@@ -1,10 +1,10 @@
 # Salesforce Headless 360 — Sales Talk Track
 
-> **Usage:** 1–2 minutes per slide. Slides 3 and 4 typically draw the most questions — budget extra time there. Full deck runs 10–13 minutes at a comfortable pace.
+> **Usage:** 1–2 minutes per slide. Slides 3 and 5 typically draw the most questions — budget extra time there. Full deck runs 10–13 minutes at a comfortable pace.
 
 ---
 
-## Slide 1 — Hero: Salesforce Headless 360
+## Slide 1 — Headless 360: The Platform You Trust, Everywhere
 
 "So I want to start by reframing something. When people hear 'Headless 360' they immediately think Salesforce is blowing everything up and starting over. That's not what this is.
 
@@ -12,81 +12,107 @@ What this is — is Salesforce finally opening the door. Everything that makes S
 
 Think of it this way: the foundation of your house doesn't change when you add a new door. The structure, the wiring, the plumbing — all intact. We just gave you a new way in.
 
-And honestly, this isn't brand new. We've been moving in this direction for years. Headless 360 is the moment it becomes a real product conversation."
+And honestly — this isn't brand new. You've seen pieces of this for years. The open API has been there. The CLI has been there. Developers have been building headless workarounds for a long time. Headless 360 is the moment it becomes a real, supported, enterprise-grade product conversation.
+
+The foundation doesn't change. The front door does."
 
 ---
 
-## Slide 2 — What is Headless 360 (The 4 Pillars)
+## Slide 2 — So What is New? The Shift from DIY to Platform-Native
 
-"Let me break down what's actually inside Headless 360, because the name can feel abstract.
+"Now you might be thinking — okay, but haven't we been doing 'headless' for a while? Yeah. You probably have. Some of you have been hacking headless with the CLI, running local MCP servers, building your own experimental setups. That's real. And it's been valuable.
 
-Four things. First, the **Backend System** — this is decades of enterprise-grade infrastructure. Your data model, your objects, your relationships. None of that changes.
+So what is actually new here?
 
-Second, the **Open API Platform**. This is the new part that's getting attention. We've exposed an MCP Server — Model Context Protocol — which is the emerging standard for how AI systems talk to enterprise software. That's the unlock.
+The shift is from DIY to platform-native. Headless 360 takes everything you've been experimenting with and wraps it in the Salesforce Trust Layer — making it production-ready at enterprise scale.
 
-Third, the **Agentic Layer**. Agentforce isn't going away — it's actually more powerful here. You're building deterministic actions and agents that get exposed through that MCP Server. So the work you're doing in Agentforce today becomes the fuel for Headless 360.
+Three pillars: **MCP Servers** — CRM Kits, a Hosted MCP Server, the Salesforce DX MCP Server, and Data Cloud Kits. These are no longer experiments you stitch together yourself. They're first-class, supported infrastructure.
 
-And fourth — **Security and Profiles**. This is actually one of the most underrated parts of this story. User permissions and profiles are respected natively across every surface. That's historically been really hard to enforce when you go outside the Salesforce UI. We solve that. Every action is tied to a user, every profile is respected, every audit trail is intact.
+**Experience Layer** — Interactive Cards, Dynamic Forms, React and multi-framework support. The front-end toolkit that actually makes this usable across surfaces.
 
-So when your customers ask 'what is Headless 360' — it's these four pillars, now accessible from anywhere."
+And **Agentic Observability** — Session Tracing, a Testing Center, Agent Script. Because you can't run production agentic workloads without being able to see what's happening and audit it.
+
+The numbers tell the story too: 40% latency reduction, 60+ security handlers, 250+ native tools. This isn't a demo. This is a platform.
+
+The DIY era is over. Platform-native is here."
 
 ---
 
-## Slide 3 — Addressing the Fear
+## Slide 3 — We're Not Killing the UI
 
-"Now let's address the elephant in the room. Parker Harris said, and I'm quoting directly: *'You may not even log into Salesforce anymore.'* That got a lot of attention. And I want to be honest — there's some truth to it. Some users genuinely may prefer a conversational interface over clicking through screens. That's a real use case we now support.
+"Now let's address the elephant in the room. Parker Harris said, and I'm quoting directly: *'Why should you ever log into Salesforce again?...... Maybe you never will.'* That got a lot of attention. And I want to be honest — there's some truth to it. Some users genuinely may prefer a conversational interface over clicking through screens. That's a real use case we now support.
 
 But here's what that quote is **NOT** saying: it is not saying we're forcing anyone's hand. It is not saying Lightning is being sunset. It is not saying your screen flows and record pages are going away.
 
-Every fear on the left has a direct answer on the right. We have an active, growing UI roadmap. We are still building flows, record updates, dashboards — all of it continues.
+We have an active, growing Lightning UI roadmap. MCP Client support is coming to Agentforce. We are continuously shipping cloud updates and enhancements. All of it continues.
 
-The way I explain it to customers is this: we used to only offer one door. You had to come through the Salesforce UI. Now we offer two doors. Some users will walk through the AI-native door. Some will keep using the door they've always used. We built both. We support both. You choose.
+The way I explain it to customers is this: we used to only offer one door. You had to come through the Salesforce UI. Now we offer two doors. Lightning and conversational, harmonized — not competing.
 
-Headless 360 is an option, not a mandate. Full stop."
+Headless 360 is a new door. It doesn't close the old one."
 
 ---
 
 ## Slide 4 — Slack: The Ultimate Agent Orchestrator
 
-"Okay so if Headless 360 opens the platform — what's the best way to actually use it? For customers who are in Slack, the answer is right here.
+"Okay so if Headless 360 opens the platform — what's the OOTB face of it? For customers who are in Slack, the answer is right here.
 
-We are positioning Slackbot as the central AI command center for your entire organization. And I mean entire — not just Salesforce. Look at this architecture. At the top you have Slack as the system of engagement. Below that, Agentforce as the system of agency — your agents, your MCP connections, your A2A orchestration. Below that, Salesforce Headless 360 as the system of work. And underpinning all of it, Data 360 — your CDP, MuleSoft, Tableau, all governed and real-time.
+Slack is the out-of-the-box front door to Headless 360. We are positioning Slackbot as the central AI command center for your entire organization. Your AI Command Center.
 
-What this means for your end users is enormous. Imagine typing into Slack: *'Pull me a summary of all at-risk deals this quarter and create follow-up tasks.'* That call goes to Slackbot, which orchestrates Agentforce, which hits Headless 360, which pulls your real Salesforce data — with your permissions, with your profiles, with a full audit trail.
+What this means for your end users is enormous. Imagine typing into Slack: *'Pull me a summary of all at-risk deals this quarter and create follow-up tasks.'* Or: *'Find me all of my Sev 1 cases that have been open for over a week.'* Natural language in. Cross-platform action out.
 
-And it doesn't stop at Salesforce. Jira, Confluence, any MCP-connected app — all of it flows through the same orchestrator. This is the ChatGPT for your org that everyone has been asking for. Except it's grounded in your data and governed by your rules."
+Two things make this enterprise-grade and not just a chatbot: **Grounded in Truth** — full audit trails and data governance across Headless 360, Agentforce, Jira, and Confluence. Every action tied to a real user, every profile respected.
+
+And **Natural Language** — the ChatGPT experience for your org, governed by your specific rules and permissions. This isn't a free-for-all. It's a governed, permission-aware, enterprise AI interface.
+
+Real permissions. Real audit trail. That's what separates this from anything else in the market."
 
 ---
 
-## Slide 5 — The Developer Story
+## Slide 5 — What if You Don't Have Slack?
+
+"Now, not everyone is a Slack shop. And that's completely fine. Because the power of Headless 360 isn't locked to Slack — Slack is just the OOTB experience. The underlying data and structure stay consistent regardless of how you access it.
+
+If you don't have Slack, you have three compelling paths.
+
+**Agentforce Vibes** — build custom React apps inside the Salesforce environment using pro-code tools. Your developers build the experience your users need, on top of the same MCP foundation.
+
+**Agentic AI Tools** — native connections that bring Headless 360 power directly into the tools your developers already live in. Claude. Cursor. Your team doesn't have to change their workflow to get the power of the platform.
+
+**Custom Surfaces** — build your own bespoke interfaces on our secure MCP foundation. If you have a proprietary portal, a mobile app, a Teams integration — you can bring Salesforce power there too.
+
+The channel is your choice. The power is the same. Whatever surface your users live in, Headless 360 meets them there."
+
+---
+
+## Slide 6 — The Developer Story
 
 "This one is for when you're talking to a technical audience or a developer champion — because this is where Salesforce really separates itself.
 
-Look at this pipeline. Step one: your developers use Claude and Cursor, connected directly into Salesforce. They're writing Apex classes, building flows, understanding metadata — with AI assistance. This dramatically speeds up the build cycle.
+We are not replacing developers. We are giving them superpowers. Claude and Cursor now connect directly to the heart of Salesforce — and that's not roadmap, that's real today.
 
-Step two: those become Agentforce Actions — deterministic, scripted, tested. You know exactly what they do. No hallucination risk, no ambiguity. That's intentional.
+Three steps in the developer pipeline. **Build with AI** — accelerate Apex, Flow, and Metadata creation with Vibes, Claude, and Cursor. Your developers work in the tools they love, with AI assistance that knows your org.
 
-Step three: those actions get packaged into the MCP Server. Step four: they're surfaced through Slackbot or whatever interface your users prefer. Step five: the end user just asks in plain English.
+**Deploy to Platform** — class test creation and security validation before deployment, all agentified. Deterministic actions, no hallucination risk, full test coverage automated.
 
-The punchline is this: we are pro-developer, full stop. We're not replacing Agentforce. We're not replacing your admin's flows. We are giving your developers AI superpowers to build faster — and then making everything they build available to end users naturally.
+**Expose to Users** — natural language triggers. End users just ask, the platform acts. The work your developers put in flows directly to the people who need it, in plain English.
 
-Claude and Cursor can connect directly to Salesforce today. That's not roadmap. That's real. And what your team builds with those tools feeds directly into this architecture."
+Salesforce is meeting developers where they are. Natural language development within the platform. Enterprise-grade scale behind it. That pipeline — build, deploy, expose — is the full loop. And every piece of it is available now."
 
 ---
 
-## Slide 6 — Closing: Both Sides of the Coin
+## Slide 7 — Both Sides of the Coin
 
 "So here's how I want to leave you.
 
-Salesforce is the only platform in the market that can credibly say: we play both sides of the coin. You want AI-native, conversational, cross-platform? We have Headless 360 and Slackbot ready to go. You want the Lightning experience your team has used for years, with screen flows and dashboards and record pages? That's still here, still being built, still fully supported.
+Salesforce is the only platform in the market that can credibly say: we play both sides of the coin. You want AI-native, conversational, cross-platform Headless 360? We have it. You want the Lightning experience your team has used for years — screen flows, dashboards, record pages? That's still here, still being built, still fully supported.
 
 Most vendors are forcing a choice. We're not. We're meeting you exactly where you are.
 
-And here's the governance piece that I want to make sure lands: this is not a free-for-all. You still need a user license. Every action is tied to a named user. Audit trails are preserved. Activity history is per-user. Permissions are fully respected. The trust layer that Salesforce is known for — that doesn't go away just because the interface changes.
+And here's the governance piece I want to make sure lands: this is not a free-for-all. User licenses still matter. Audit trails are preserved. Activity history is user-tied. The Trust Layer is always on. The things that make Salesforce the enterprise standard — none of that goes away just because the interface changes.
 
-So when your team comes back from this conversation and asks 'what does this mean for us?' — the answer is: it means you have more options, not fewer. You can embrace the AI future on your terms, at your pace, without leaving behind what already works.
+So when your team asks 'what does this mean for us?' — the answer is: more options, not fewer. You can embrace the AI future on your terms, at your pace, without leaving behind what already works.
 
-That's the Salesforce bet. And I think it's the right one."
+Headless 360 and Lightning aren't competing. They're two sides of the same coin. Protect what you love. Embrace what's next."
 
 ---
 
